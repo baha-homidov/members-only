@@ -1,8 +1,70 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body div.content {
+  background-color: blue;
+  max-width: max(70vw, 850px);
+  width: 100%;
+  min-height: 98vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body nav.navbar {
+  border: 1px solid red;
+  background-color: antiquewhite;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+nav.navbar button.authorize {
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+body .sign-up-window {
+  margin-top: 100px;
+  box-shadow: 2px 2px 100px 10px rgba(0, 0, 0, 0.381);
+  width: 400px;
+
+  background-color: white;
+  border-radius: 10px;
+  padding: 0px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body .sign-up-window form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+body .sign-up-window form label {
+  font-size: 1.2em;
+}
+
+body .sign-up-window form input,
+body .sign-up-window form button {
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+body .sign-up-window h3 {
+  font-size: 1.7em;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
