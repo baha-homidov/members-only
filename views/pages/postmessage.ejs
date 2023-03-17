@@ -11,15 +11,21 @@
         <form method="POST">
           <label for="title">Title</label>
           <input
+          required
             name="title"
             placeholder="title"
             type="text"
-            value="<%= locals.user ? locals.user.username : '' %>"
-            required
+            value="<%= locals.message ? locals.message.title : '' %>"
           />
+          <% if (locals.errors != undefined && errors.find(element =>
+          element.param == "title")) { %> <%= errors.find(element =>
+          element.param == "title").msg %> <% } %>
 
           <label for="text">Text</label>
-          <textarea required name="text" id="text" cols="20" rows="10" ></textarea>
+          <textarea required name="text" id="text" cols="20" rows="10"><%= locals.message ? locals.message.text : '' %></textarea>
+          <% if (locals.errors != undefined && errors.find(element =>
+          element.param == "text")) { %> <%= errors.find(element =>
+          element.param == "text").msg %> <% } %>
           <button>Post</button>
         </form>
       </div>

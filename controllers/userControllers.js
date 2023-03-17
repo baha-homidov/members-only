@@ -68,7 +68,7 @@ exports.sign_up_get = (req, res) => {
 
 // Handle sign-up on POST
 exports.sign_up_post = [
-  // Validate and sinitize the data
+  // Validate and sanitize the data
   body("username", "Username required").trim().isLength({ min: 1 }).escape(),
   body("fullname", "Fullname required").trim().isLength({ min: 1 }).escape(),
   body("password")
