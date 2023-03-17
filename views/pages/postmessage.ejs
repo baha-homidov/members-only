@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <div class="content">
+      <%- include('../partials/navbar'); %>
+      <div class="input-form">
+        <h3>Create a message</h3>
+        <form method="POST">
+          <label for="title">Title</label>
+          <input
+            name="title"
+            placeholder="title"
+            type="text"
+            value="<%= locals.user ? locals.user.username : '' %>"
+            required
+          />
+
+          <label for="text">Text</label>
+          <textarea required name="text" id="text" cols="20" rows="10" ></textarea>
+          <button>Post</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

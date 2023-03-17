@@ -22,17 +22,25 @@ body nav.navbar {
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 30px;
+  justify-content: end;
 }
 
-nav.navbar button.authorize {
+body nav.navbar .container {
+  padding-right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+
+}
+
+nav.navbar button {
   height: 30px;
   border-radius: 10px;
   cursor: pointer;
 }
 
-body .sign-up-window {
+body .input-form {
   margin-top: 100px;
   box-shadow: 2px 2px 100px 10px rgba(0, 0, 0, 0.381);
   width: 400px;
@@ -45,24 +53,28 @@ body .sign-up-window {
   align-items: center;
 }
 
-body .sign-up-window form {
+body .input-form form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-body .sign-up-window form label {
+body .input-form form label {
   font-size: 1.2em;
 }
 
-body .sign-up-window form input,
-body .sign-up-window form button {
+body .input-form form input,
+body .input-form form button {
   height: 30px;
   margin-bottom: 20px;
 }
 
-body .sign-up-window h3 {
+body .input-form h3 {
   font-size: 1.7em;
+}
+
+body .input-form textarea {
+  resize: none;
 }
 
 a {

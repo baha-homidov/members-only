@@ -2,6 +2,16 @@
   <% if(locals.currentUser){ %>
   <div class="container">
     <h3>Welcome back, <%- currentUser.username %>!</h3>
+    <a href="/post-message">
+      <button >Write a message</button>
+    </a>
+    <a href="/#">
+      <button >My status</button>
+    </a>
+
+    <a href="/#">
+      <button >Log out</button>
+    </a>
   </div>
   <% } else{ %>
   <div class="container">

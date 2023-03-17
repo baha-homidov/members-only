@@ -41,7 +41,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // middleware to make 
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
-
   next();
 });
 
