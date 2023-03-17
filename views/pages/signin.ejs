@@ -5,14 +5,7 @@
   </head>
   <body>
     <div class="content">
-      <nav class="navbar">
-        <a href="/sign-in">
-          <button class="authorize">Sign In</button>
-        </a>
-        <a href="/sign-up">
-          <button class="authorize">Sign Up</button>
-        </a>
-      </nav>
+      <%- include('../partials/navbar'); %>
       <div class="sign-up-window">
         <h3>Sign In</h3>
         <form action="/sign-in" method="POST">

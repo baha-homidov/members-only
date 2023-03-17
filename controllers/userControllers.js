@@ -41,7 +41,7 @@ passport.deserializeUser(async function (id, done) {
 
 // Display sign-in form on GET
 exports.sign_in_get = (req, res) => {
-  console.log(req.session.messages);
+
   res.render("pages/signin", {
     title: "Sign in",
     errorMessage:
@@ -114,7 +114,7 @@ exports.sign_up_post = [
 
       if (!errors.isEmpty()) {
         // There are errors. Render the form again with sanitized values/error messages.
-        console.log(errors);
+
         res.render("pages/signup", {
           title: "Sign up",
           errors: errors.array(),
@@ -146,9 +146,7 @@ exports.sign_up_post = [
                 errors: errorsArray,
                 user,
               });
-              console.log(
-                `USER WITH USERNAME ${req.body.username} already exists!`
-              );
+              
             } else {
               user.save((err) => {
                 if (err) {
