@@ -5,7 +5,7 @@ const UserSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
   fullname: { type: String, required: true },
-  membership: {type: String, enum: ['non-member', 'member', 'admin']},
+  membership: {type: String, required: true, enum: ['non-member', 'member', 'admin']},
 });
 
 

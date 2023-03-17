@@ -3,16 +3,25 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/catalog");
 
 var app = express();
 
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = "mongodb+srv://admin:admin@cluster0.wrmaild.mongodb.net/?retryWrites=true&w=majority";
+const mongoDB =
+  "mongodb+srv://admin:admin@cluster0.wrmaild.mongodb.net/?retryWrites=true&w=majority";
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -21,14 +30,20 @@ async function main() {
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
-app.set('view engine', 'ejs');
-
+app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+// middleware to make 
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  console.log(req.user);
+  next();
+});
 
 app.use("/", indexRouter);
 // app.use("/users", usersRouter);

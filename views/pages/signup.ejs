@@ -6,38 +6,51 @@
   <body>
     <div class="content">
       <nav class="navbar">
-        <button class="authorize">Sign In</button
-        ><button class="authorize">Sign Up</button>
+        <a href="/sign-in">
+          <button class="authorize">Sign In</button>
+        </a>
+        <a href="/sign-up">
+          <button class="authorize">Sign Up</button>
+        </a>
       </nav>
       <div class="sign-up-window">
         <h3>Create an account</h3>
         <form action="" method="POST">
           <label for="username">Username</label>
 
-          <input name="username" placeholder="username" type="text" value="<%= locals.user ? locals.user.username : '' %>" />
+          <input
+            name="username"
+            placeholder="username"
+            type="text"
+            value="<%= locals.user ? locals.user.username : '' %>"
+          />
 
-          <% if (locals.errors != undefined && errors.find(element => element.param == "username")) { %>
-            <%= errors.find(element => element.param == "username").msg %>
-          <% } %>
-
-          <% if (locals.errors != undefined && errors.find(element => element.param == "duplicate_username")) { %>
-            <%= errors.find(element => element.param == "duplicate_username").msg %>
-          <% } %>
+          <% if (locals.errors != undefined && errors.find(element =>
+          element.param == "username")) { %> <%= errors.find(element =>
+          element.param == "username").msg %> <% } %> <% if (locals.errors !=
+          undefined && errors.find(element => element.param ==
+          "duplicate_username")) { %> <%= errors.find(element => element.param
+          == "duplicate_username").msg %> <% } %>
           <label for="fullname">Full name</label>
-          <input name="fullname" placeholder="John Doe" type="text" value="<%= locals.user ? locals.user.fullname : '' %>" />
-          <% if (locals.errors != undefined && errors.find(element => element.param == "fullname")) { %>
-            <%= errors.find(element => element.param == "fullname").msg %>
-          <% } %>
+          <input
+            name="fullname"
+            placeholder="John Doe"
+            type="text"
+            value="<%= locals.user ? locals.user.fullname : '' %>"
+          />
+          <% if (locals.errors != undefined && errors.find(element =>
+          element.param == "fullname")) { %> <%= errors.find(element =>
+          element.param == "fullname").msg %> <% } %>
           <label for="password">Password</label>
-          <input name="password" type="password"  />
-          <% if (locals.errors != undefined && errors.find(element => element.param == "password")) { %>
-            <%= errors.find(element => element.param == "password").msg %>
-          <% } %>
+          <input name="password" type="password" />
+          <% if (locals.errors != undefined && errors.find(element =>
+          element.param == "password")) { %> <%= errors.find(element =>
+          element.param == "password").msg %> <% } %>
           <label for="confirm-password">Confirm Password</label>
           <input name="confirm-password" type="password" />
-          <% if (locals.errors != undefined && errors.find(element => element.param == "confirm-password")) { %>
-            <%= errors.find(element => element.param == "confirm-password").msg %>
-          <% } %>
+          <% if (locals.errors != undefined && errors.find(element =>
+          element.param == "confirm-password")) { %> <%= errors.find(element =>
+          element.param == "confirm-password").msg %> <% } %>
           <button>Sign Up</button>
         </form>
       </div>
