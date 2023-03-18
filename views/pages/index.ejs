@@ -6,6 +6,22 @@
   <body>
     <div class="content">
       <%- include('../partials/navbar'); %>
+      <div class="message-list-container">
+        <% for(var i=0; i<message_list.length; i++) {%>
+           <div class="message-container">
+             <div class="name-date-container">
+               <div class="username"><%= message_list[i].author.username %></div>
+               <div class="timestamp"><%= message_list[i].timestamp_formatted %></div>
+             </div>
+             <h3>
+             <%= message_list[i].title %>
+             </h3>
+             <%= message_list[i].text %>
+           </div>
+
+        <% } %>
+          </div>
     </div>
+
   </body>
 </html>

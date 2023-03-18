@@ -5,8 +5,17 @@ body {
   align-items: center;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
 body div.content {
-  background-color: blue;
+  background-color: rgb(228, 227, 225);
   max-width: max(70vw, 850px);
   width: 100%;
   min-height: 98vh;
@@ -31,13 +40,41 @@ body nav.navbar .container {
   align-items: center;
   justify-content: flex-end;
   gap: 20px;
-
 }
 
 nav.navbar button {
   height: 30px;
   border-radius: 10px;
   cursor: pointer;
+  padding: 5px;
+}
+
+div.content .message-list-container {
+  border: 1px solid blue;
+  margin-top: 30px;
+  width: min(600px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+div.content .message-list-container .message-container {
+  background-color: white;
+  box-shadow: 1px 1px 5px rgba(139, 139, 139, 0.626);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+div.content .message-container .name-date-container {
+  background-color: rgb(199, 194, 194);
+  padding: 5px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
 }
 
 body .input-form {

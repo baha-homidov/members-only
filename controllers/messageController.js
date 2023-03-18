@@ -3,8 +3,22 @@ const { body, check, validationResult } = require("express-validator"); // valid
 const user = require("../models/user");
 
 // Retrieve all messages from backend and dispaly them
-exports.index = (req, res) => {
-  res.send("NOT IMPLEMENTED: Index page");
+exports.index = (req, res, next) => {
+  // Retrieve all the messages from the database
+  Message.find({})
+    .sort({ timestamp: -1 })
+    .populate("author", "username")
+    .exec(function (err, list_messages) {
+      if (err) {
+        return next(err);
+      }
+
+      // Successful, so render
+      res.render("pages/index", {
+        title: "Members Only",
+        message_list: list_messages,
+      });
+    });
 };
 
 // Display message create form form on GET
@@ -58,8 +72,7 @@ exports.message_create_post = [
         }
         // Message saved. Redirect to main page.
         res.redirect("/");
-
-      })
+      });
     }
 
     console.log(message);

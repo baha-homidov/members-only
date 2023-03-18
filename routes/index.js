@@ -6,9 +6,7 @@ const user_controller = require("../controllers/userControllers");
 const message_controller = require("../controllers/messageController");
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("pages/index", { title: "Members Only" });
-});
+router.get("/", message_controller.index);
 
 // GET sign-in page
 router.get("/sign-in", user_controller.sign_in_get);
