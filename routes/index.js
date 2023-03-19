@@ -20,8 +20,14 @@ router.get("/sign-up", user_controller.sign_up_get);
 // POST sign-up page
 router.post("/sign-up", user_controller.sign_up_post);
 
+// GET log-out page
+router.get("/log-out", user_controller.logout);
+
 // GET membership status
-router.get("/membership-status", user_controller.membership_status);
+router.get("/membership-status", user_controller.membership_status_get);
+
+// POST membership status
+router.post("/membership-status", user_controller.membership_status_post);
 
 // GET post message page
 router.get("/post-message", message_controller.message_create_get);

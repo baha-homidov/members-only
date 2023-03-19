@@ -3,6 +3,7 @@ const { body, check, validationResult } = require("express-validator"); // valid
 const bcrypt = require("bcryptjs"); // library for hashing and salting (encrypting and decrypting) the passwords
 const LocalStrategy = require("passport-local").Strategy;
 const passport = require("passport");
+const { render } = require("../app");
 
 // Define and use a LocalStrategy for authentication
 passport.use(
@@ -41,7 +42,6 @@ passport.deserializeUser(async function (id, done) {
 
 // Display sign-in form on GET
 exports.sign_in_get = (req, res) => {
-
   res.render("pages/signin", {
     title: "Sign in",
     errorMessage:
@@ -55,11 +55,6 @@ exports.sign_in_post = passport.authenticate("local", {
   failureRedirect: "/sign-in",
   failureMessage: true,
 });
-
-// app.post(
-//   "/log-in",
-
-// );
 
 // Display sign-up form on GET
 exports.sign_up_get = (req, res) => {
@@ -146,7 +141,6 @@ exports.sign_up_post = [
                 errors: errorsArray,
                 user,
               });
-              
             } else {
               user.save((err) => {
                 if (err) {
@@ -163,7 +157,91 @@ exports.sign_up_post = [
   },
 ];
 
-// Display membership status on GET
-exports.membership_status = (req, res) => {
-  res.send("NOT IMPLEMENTED: Memebership status on GET");
+exports.logout = (req, res, next) => {
+  // if user is not logged in redirect to index page
+  if (!res.locals.currentUser) {
+    res.redirect("/");
+    return;
+  }
+
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 };
+
+// Display membership status on GET
+exports.membership_status_get = (req, res) => {
+  // if user is not logged in redirect to sign-in page
+  if (!res.locals.currentUser) {
+    res.redirect("/sign-in");
+    return;
+  }
+
+  res.render("pages/status", {
+    title: "My status",
+  });
+};
+
+// Handle membership status upgrade on POST
+exports.membership_status_post = [
+  // validate and sanitize the data
+  body("secret", "Secret phrase required").trim().isLength({ min: 1 }).escape(),
+
+  // Process request after validation and sanitization
+  (req, res, next) => {
+    // if user is not logged in redirect to sign-in page
+    if (!res.locals.currentUser) {
+      res.redirect("/sign-in");
+      return;
+    }
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      // There are errors. Render the form again with ssanitized values/error messages
+      res.render("pages/status", {
+        title: "My status",
+        errors: errors.array(),
+        secret_phrase: req.body.secret,
+      });
+    } else {
+      if (req.body.secret === "secret") {
+        // Give the current user the "member" status
+        User.findByIdAndUpdate(
+          res.locals.currentUser._id,
+          { membership: "member" },
+          {},
+          (err, theuser) => {
+            if (err) {
+              return err(next);
+            }
+
+            // Successful: redirect to membership status page.
+            res.redirect("/membership-status");
+          }
+        );
+      } else if (req.body.secret === "superadmin") {
+        // Give the current user the "admin" status
+
+        User.findByIdAndUpdate(
+          res.locals.currentUser._id,
+          { membership: "admin" },
+          {},
+          (err, theuser) => {
+            if (err) {
+              return err(next);
+            }
+
+            // Successful: redirect to membership status page.
+            res.redirect("/membership-status");
+          }
+        );
+      } else {
+        res.redirect("/membership-status");
+      }
+    }
+  },
+];

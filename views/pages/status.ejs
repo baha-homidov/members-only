@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <div class="content">
+      <%- include('../partials/navbar'); %>
+      <div class="input-form">
+        <h3>Current status: <%- currentUser.membership %></h3>
+        <form method="POST">
+          <label for="title">Secret phrase</label>
+          <input
+            value="<%= locals.secret_phrase ? locals.secret_phrase : '' %>"
+            required
+            name="secret"
+            placeholder="secret"
+            type="text"
+          />
+          <p>Input a secret phrase to upgrade your status!</p>
+          <button>Post</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
