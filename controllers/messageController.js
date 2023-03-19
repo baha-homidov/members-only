@@ -13,6 +13,17 @@ exports.index = (req, res, next) => {
         return next(err);
       }
 
+      // Strip out the user names if user is not signed in or has a "non-member status"
+      if (
+        !res.locals.currentUser ||
+        (res.locals.currentUser &&
+          res.locals.currentUser.membership === "non-member")
+      ) {
+        list_messages.forEach((element, index) => {
+          list_messages[index].author.username = "hidden";
+        });
+      }
+
       // Successful, so render
       res.render("pages/index", {
         title: "Members Only",
