@@ -89,3 +89,24 @@ exports.message_create_post = [
     console.log(message);
   },
 ];
+
+module.exports.delete = (req, res, next) => {
+  // if user is not logged in or doesn't have admin permissions redirect to index page
+  if (
+    !res.locals.currentUser ||
+    (res.locals.currentUser && res.locals.currentUser.membership !== "admin")
+  ) {
+    res.redirect("/");
+    return;
+  }
+
+  // User has admin permissions, delete the message
+  Message.findByIdAndRemove(req.params.id, (err) => {
+    if (err) {
+      next(err);
+    }
+
+    // Success go to main page
+    res.redirect("/");
+  });
+};

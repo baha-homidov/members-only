@@ -17,9 +17,15 @@
              <%= message_list[i].title %>
              </h3>
              <%= message_list[i].text %>
+             <% if (locals.currentUser && locals.currentUser.membership === "admin") { %>
+              <a href="delete/<%= message_list[i]._id %>">
+                <button class="delete">Delete message</button>
+              </a>
+             <% } %>
            </div>
 
         <% } %>
+
           </div>
     </div>
 
