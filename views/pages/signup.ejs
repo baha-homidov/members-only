@@ -19,11 +19,17 @@
           />
 
           <% if (locals.errors != undefined && errors.find(element =>
-          element.param == "username")) { %> <%= errors.find(element =>
-          element.param == "username").msg %> <% } %> <% if (locals.errors !=
-          undefined && errors.find(element => element.param ==
-          "duplicate_username")) { %> <%= errors.find(element => element.param
-          == "duplicate_username").msg %> <% } %>
+          element.param == "username")) { %>
+          <p class="error-message">
+            <%= errors.find(element => element.param == "username").msg %>
+          </p>
+          <% } %> <% if (locals.errors != undefined && errors.find(element =>
+          element.param == "duplicate_username")) { %>
+          <p class="error-message">
+            <%= errors.find(element => element.param ==
+            "duplicate_username").msg %>
+          </p>
+          <% } %>
           <label for="fullname">Full name</label>
           <input
             name="fullname"
@@ -32,18 +38,28 @@
             value="<%= locals.user ? locals.user.fullname : '' %>"
           />
           <% if (locals.errors != undefined && errors.find(element =>
-          element.param == "fullname")) { %> <%= errors.find(element =>
-          element.param == "fullname").msg %> <% } %>
+          element.param == "fullname")) { %>
+          <p class="error-message">
+            <%= errors.find(element => element.param == "fullname").msg %>
+          </p>
+          <% } %>
           <label for="password">Password</label>
           <input name="password" type="password" />
           <% if (locals.errors != undefined && errors.find(element =>
-          element.param == "password")) { %> <%= errors.find(element =>
-          element.param == "password").msg %> <% } %>
+          element.param == "password")) { %>
+          <p class="error-message">
+            <%= errors.find(element => element.param == "password").msg %>
+          </p>
+          <% } %>
           <label for="confirm-password">Confirm Password</label>
           <input name="confirm-password" type="password" />
           <% if (locals.errors != undefined && errors.find(element =>
-          element.param == "confirm-password")) { %> <%= errors.find(element =>
-          element.param == "confirm-password").msg %> <% } %>
+          element.param == "confirm-password")) { %>
+          <p class="error-message">
+            <%= errors.find(element => element.param == "confirm-password").msg
+            %>
+          </p>
+          <% } %>
           <button>Sign Up</button>
         </form>
       </div>

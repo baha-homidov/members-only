@@ -7,11 +7,8 @@
     <div class="content">
       <%- include('../partials/navbar'); %>
       <div class="input-form">
-        <h3>Sign In</h3>
+        <h3 class="title">Sign In</h3>
         <form action="/sign-in" method="POST">
-          <% if (locals.errorMessage!=null) { %>
-          <p>Incorrect credentials</p>
-          <% } %>
           <label for="username">Username</label>
           <input
             name="username"
@@ -23,6 +20,9 @@
           <label for="password">Password</label>
           <input name="password" type="password" />
 
+          <% if (locals.errorMessage!=null) { %>
+          <p class="error-message">Incorrect credentials</p>
+          <% } %>
           <button>Sign In</button>
         </form>
       </div>

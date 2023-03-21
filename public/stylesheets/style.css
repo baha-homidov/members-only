@@ -1,11 +1,11 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 * {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -15,18 +15,18 @@ ul {
 }
 
 body div.content {
-  background-color: rgb(228, 227, 225);
-  max-width: max(70vw, 850px);
+  background-color: #2f2f89;
   width: 100%;
   min-height: 98vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 body nav.navbar {
-  border: 1px solid red;
-  background-color: antiquewhite;
+  background-color: #2e2f88;
+  border-bottom: 2px solid white;
   width: 100%;
   height: 50px;
   display: flex;
@@ -43,10 +43,20 @@ body nav.navbar .container {
 }
 
 nav.navbar button {
-  height: 30px;
+  background-color: #fbe56e;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
-  padding: 5px;
+  padding: 5px 15px 5px 15px;
+}
+div.content h3.welcome {
+  color: #fefefd;
+}
+
+div.content .membership {
+  color: #fbe56e;
 }
 
 div.content .message-list-container {
@@ -56,21 +66,38 @@ div.content .message-list-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 3;
+}
+
+div.content .logo {
+  position: absolute;
+  top: 15px;
+  font-size: 7rem;
+  color: rgba(154, 154, 154, 0.228);
+  pointer-events: none;
+  cursor: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 div.content .message-list-container .message-container {
-  background-color: white;
-  box-shadow: 1px 1px 5px rgba(139, 139, 139, 0.626);
+  background-color: #f5f8fc;
+
   padding: 10px;
   border-radius: 10px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 div.content .message-container .name-date-container {
-  background-color: rgb(199, 194, 194);
+  background-color: #ceb92b;
+  font-size: 1.3rem;
   padding: 5px;
   border-radius: 7px;
   display: flex;
@@ -79,15 +106,19 @@ div.content .message-container .name-date-container {
 
 body .input-form {
   margin-top: 100px;
-  box-shadow: 2px 2px 100px 10px rgba(0, 0, 0, 0.381);
+  font-size: 1.2rem;
   width: 400px;
-
-  background-color: white;
+  background-color: #f5f8fc;
   border-radius: 10px;
-  padding: 0px 10px 10px 10px;
+
+  padding: 25px 15px 25px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+body .input-form .title {
+  color: #f16675;
 }
 
 body .input-form form {
@@ -97,13 +128,40 @@ body .input-form form {
 }
 
 body .input-form form label {
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #282a2a;
+  padding-bottom: 7px;
+  margin-top: 20px;
 }
 
-body .input-form form input,
-body .input-form form button {
+body .input-form form input {
   height: 30px;
-  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #282a2a;
+  padding: 2px;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+body .input-form form input:focus {
+  border: 1px solid #fbe56e;
+}
+
+body .input-form form .error-message {
+  margin-top: 7px;
+  color: red;
+}
+
+body .input-form form button {
+  margin-top: 20px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: #fbe56e;
 }
 
 body .input-form h3 {

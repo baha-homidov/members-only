@@ -6,11 +6,12 @@
   <body>
     <div class="content">
       <%- include('../partials/navbar'); %>
+      <h1 class="logo">MEMBERS ONLY</h1>
       <div class="message-list-container">
         <% for(var i=0; i<message_list.length; i++) {%>
            <div class="message-container">
              <div class="name-date-container">
-               <div class="username"><%= message_list[i].author.username %></div>
+               <div class="username">Author: <%= message_list[i].author.username %></div>
                <div class="timestamp"><%= message_list[i].timestamp_formatted %></div>
              </div>
              <h3>

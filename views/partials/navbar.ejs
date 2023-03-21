@@ -1,8 +1,8 @@
 <nav class="navbar">
   <% if(locals.currentUser){ %>
   <div class="container">
-    <h3>Welcome back, <%- currentUser.username %>!</h3>
-    <h4><%- currentUser.membership %></h4>
+    <h3 class="welcome">Welcome back, <%- currentUser.username %>!</h3>
+    <h4 class="membership"><%- currentUser.membership %></h4>
     <a href="/membership-status">
       <button>Upgrade status</button>
     </a>
