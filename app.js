@@ -6,6 +6,7 @@ var logger = require("morgan");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+require("dotenv").config();
 
 var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/catalog");
@@ -20,8 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB =
-  "mongodb+srv://admin:admin@cluster0.wrmaild.mongodb.net/?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGO_URL;
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// middleware to make 
+// middleware to make
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();

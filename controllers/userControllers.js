@@ -3,7 +3,9 @@ const { body, check, validationResult } = require("express-validator"); // valid
 const bcrypt = require("bcryptjs"); // library for hashing and salting (encrypting and decrypting) the passwords
 const LocalStrategy = require("passport-local").Strategy;
 const passport = require("passport");
-const { render } = require("../app");
+
+
+require("dotenv").config();
 
 // Define and use a LocalStrategy for authentication
 passport.use(
@@ -208,7 +210,7 @@ exports.membership_status_post = [
         secret_phrase: req.body.secret,
       });
     } else {
-      if (req.body.secret === "secret") {
+      if (req.body.secret === process.env.STATUS_MEMBER) {
         // Give the current user the "member" status
         User.findByIdAndUpdate(
           res.locals.currentUser._id,
@@ -223,7 +225,7 @@ exports.membership_status_post = [
             res.redirect("/membership-status");
           }
         );
-      } else if (req.body.secret === "superadmin") {
+      } else if (req.body.secret === process.env.STATUS_ADMIN) {
         // Give the current user the "admin" status
 
         User.findByIdAndUpdate(
